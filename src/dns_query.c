@@ -23,7 +23,7 @@
 #include <config.h>
 #include <sys/types.h>
 #ifdef HAVE_SYS_POLL_H
-#include <sys/poll.h>
+#include <poll.h>
 #endif
 #include <stdlib.h>
 #include <netdb.h>

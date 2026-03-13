@@ -196,7 +196,7 @@ threadlib = @threadlib@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-SUBDIRS = src doc contrib
+SUBDIRS = src contrib
 EXTRA_DIST = version ChangeLog.old COPYING.BSD README.par README.par.old PKGBUILD
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive

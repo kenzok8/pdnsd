@@ -215,7 +215,7 @@ pdnsd_SOURCES = conf-parser.c conff.c consts.c debug.c dns.c dns_answer.c \
 	freebsd_netinet_ip_icmp.h
 
 EXTRA_DIST = make_rr_types_h.pl rr_types.in
-SUBDIRS = . pdnsd-ctl rc test
+SUBDIRS = . pdnsd-ctl
 all: all-recursive
 
 .SUFFIXES:

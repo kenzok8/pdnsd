@@ -15,7 +15,7 @@ EXTRA_DIST = make_rr_types_h.pl rr_types.in
 
 ## Try to do this last
 
-SUBDIRS = . pdnsd-ctl rc test
+SUBDIRS = . pdnsd-ctl
 
 $(pdnsd_OBJECTS): rr_types.h
 

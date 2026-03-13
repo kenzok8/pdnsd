@@ -59,7 +59,7 @@
 #include "ipvers.h"
 #include <sys/stat.h>
 #include <sys/ioctl.h>
-#include <net/if.h>
+#include <linux/if.h>
 #include <netdb.h>
 #include <string.h>
 #include <unistd.h>

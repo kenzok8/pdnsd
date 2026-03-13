@@ -1,5 +1,5 @@
 
-SUBDIRS = src doc contrib
+SUBDIRS = src contrib
 
 EXTRA_DIST = version ChangeLog.old COPYING.BSD README.par README.par.old PKGBUILD
 
