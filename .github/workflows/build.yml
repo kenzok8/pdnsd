@@ -35,5 +35,10 @@ jobs:
           CC: ${{ matrix.cc }}
         run: ./configure
 
+      - name: Touch pre-generated files (prevent make from re-running aclocal/autoconf)
+        run: |
+          touch aclocal.m4 configure config.h.in
+          find . -name 'Makefile.in' | xargs touch
+
       - name: build
         run: make -j$(nproc)
