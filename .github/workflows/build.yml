@@ -27,6 +27,9 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      - name: Install dependencies
+        run: sudo apt-get install -y build-essential autoconf automake
+
       - name: configure
         env:
           CC: ${{ matrix.cc }}
