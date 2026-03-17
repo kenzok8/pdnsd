@@ -1,7 +1,6 @@
+SUBDIRS = src
 
-SUBDIRS = src contrib
-
-EXTRA_DIST = version ChangeLog.old COPYING.BSD README.par README.par.old PKGBUILD
+EXTRA_DIST = version COPYING.BSD
 
 # The sample configuration is handled in doc/Makefile.am
 install-data-hook:
@@ -14,27 +13,3 @@ install-data-hook:
 	fi
 	chmod 0640 "$(DESTDIR)$(cachedir)/pdnsd.cache"
 	chmod 0750 "$(DESTDIR)$(cachedir)"
-
-dist-hook: $(PACKAGE).spec.in
-	sed -e '/^%{!?distro: %define distro /c\
-	%if 0%{!?distro:1}\
-	%if "%{_vendor}" == "redhat"\
-	%define distro RedHat\
-	%else\
-	%if "%{_vendor}" == "suse"\
-	%define distro SuSE\
-	%else\
-	%if "%{_vendor}" == "SuSE"\
-	%define distro SuSE\
-	%endif\
-	%endif\
-	%endif\
-	%endif' \
-	-e 's:[@]PACKAGE[@]:$(PACKAGE):g' \
-	-e 's:[@]VERSION[@]:$(VERSION):g' \
-	-e 's:[@]fullversion[@]:$(fullversion):g' \
-	-e 's:[@]packagerelease[@]:$(packagerelease):g' \
-	-e 's:[@]cachedir[@]:/var/cache/$(PACKAGE):g' \
-	-e 's:[@]def_id[@]:$(PACKAGE):g' \
-	$(PACKAGE).spec.in > $(distdir)/$(PACKAGE).spec
-
