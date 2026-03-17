@@ -9889,7 +9889,7 @@ fi
 done
 
 
-ac_config_files="$ac_config_files pdnsd.spec Makefile file-list.base contrib/Makefile doc/Makefile doc/pdnsd.8 doc/pdnsd.conf.5 doc/pdnsd.conf src/Makefile src/pdnsd-ctl/Makefile src/rc/Makefile src/rc/RedHat/Makefile src/rc/RedHat/pdnsd src/rc/SuSE/Makefile src/rc/SuSE/pdnsd src/rc/Debian/Makefile src/rc/Debian/pdnsd src/rc/Slackware/Makefile src/rc/Slackware/rc.pdnsd src/rc/ArchLinux/Makefile src/rc/ArchLinux/pdnsd src/test/Makefile PKGBUILD"
+ac_config_files="$ac_config_files Makefile doc/Makefile doc/pdnsd.8 doc/pdnsd.conf.5 doc/pdnsd.conf src/Makefile src/pdnsd-ctl/Makefile"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -10534,29 +10534,13 @@ do
   case $ac_config_target in
     "config.h") CONFIG_HEADERS="$CONFIG_HEADERS config.h" ;;
     "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
-    "pdnsd.spec") CONFIG_FILES="$CONFIG_FILES pdnsd.spec" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
-    "file-list.base") CONFIG_FILES="$CONFIG_FILES file-list.base" ;;
-    "contrib/Makefile") CONFIG_FILES="$CONFIG_FILES contrib/Makefile" ;;
     "doc/Makefile") CONFIG_FILES="$CONFIG_FILES doc/Makefile" ;;
     "doc/pdnsd.8") CONFIG_FILES="$CONFIG_FILES doc/pdnsd.8" ;;
     "doc/pdnsd.conf.5") CONFIG_FILES="$CONFIG_FILES doc/pdnsd.conf.5" ;;
     "doc/pdnsd.conf") CONFIG_FILES="$CONFIG_FILES doc/pdnsd.conf" ;;
     "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
     "src/pdnsd-ctl/Makefile") CONFIG_FILES="$CONFIG_FILES src/pdnsd-ctl/Makefile" ;;
-    "src/rc/Makefile") CONFIG_FILES="$CONFIG_FILES src/rc/Makefile" ;;
-    "src/rc/RedHat/Makefile") CONFIG_FILES="$CONFIG_FILES src/rc/RedHat/Makefile" ;;
-    "src/rc/RedHat/pdnsd") CONFIG_FILES="$CONFIG_FILES src/rc/RedHat/pdnsd" ;;
-    "src/rc/SuSE/Makefile") CONFIG_FILES="$CONFIG_FILES src/rc/SuSE/Makefile" ;;
-    "src/rc/SuSE/pdnsd") CONFIG_FILES="$CONFIG_FILES src/rc/SuSE/pdnsd" ;;
-    "src/rc/Debian/Makefile") CONFIG_FILES="$CONFIG_FILES src/rc/Debian/Makefile" ;;
-    "src/rc/Debian/pdnsd") CONFIG_FILES="$CONFIG_FILES src/rc/Debian/pdnsd" ;;
-    "src/rc/Slackware/Makefile") CONFIG_FILES="$CONFIG_FILES src/rc/Slackware/Makefile" ;;
-    "src/rc/Slackware/rc.pdnsd") CONFIG_FILES="$CONFIG_FILES src/rc/Slackware/rc.pdnsd" ;;
-    "src/rc/ArchLinux/Makefile") CONFIG_FILES="$CONFIG_FILES src/rc/ArchLinux/Makefile" ;;
-    "src/rc/ArchLinux/pdnsd") CONFIG_FILES="$CONFIG_FILES src/rc/ArchLinux/pdnsd" ;;
-    "src/test/Makefile") CONFIG_FILES="$CONFIG_FILES src/test/Makefile" ;;
-    "PKGBUILD") CONFIG_FILES="$CONFIG_FILES PKGBUILD" ;;
 
   *) { { $as_echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
 $as_echo "$as_me: error: invalid argument: $ac_config_target" >&2;}
@@ -11386,4 +11370,3 @@ if test -n "$ac_unrecognized_opts" && test "$enable_option_checking" != no; then
   { $as_echo "$as_me:$LINENO: WARNING: unrecognized options: $ac_unrecognized_opts" >&5
 $as_echo "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
 fi
-

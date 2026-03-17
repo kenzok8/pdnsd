@@ -33,10 +33,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 subdir = .
 DIST_COMMON = README $(am__configure_deps) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(srcdir)/PKGBUILD.in \
-	$(srcdir)/config.h.in $(srcdir)/file-list.base.in \
-	$(srcdir)/pdnsd.spec.in $(top_srcdir)/configure AUTHORS \
-	COPYING ChangeLog INSTALL NEWS THANKS TODO acconfig.h compile \
+	$(srcdir)/Makefile.in $(srcdir)/config.h.in \
+	$(top_srcdir)/configure AUTHORS \
+	COPYING ChangeLog INSTALL compile \
 	depcomp install-sh missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.in
@@ -46,7 +45,7 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = config.h
-CONFIG_CLEAN_FILES = pdnsd.spec file-list.base PKGBUILD
+CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 SOURCES =
 DIST_SOURCES =
@@ -196,8 +195,8 @@ threadlib = @threadlib@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-SUBDIRS = src contrib
-EXTRA_DIST = version ChangeLog.old COPYING.BSD README.par README.par.old PKGBUILD
+SUBDIRS = src
+EXTRA_DIST = version COPYING.BSD
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
@@ -246,20 +245,13 @@ config.h: stamp-h1
 stamp-h1: $(srcdir)/config.h.in $(top_builddir)/config.status
 	@rm -f stamp-h1
 	cd $(top_builddir) && $(SHELL) ./config.status config.h
-$(srcdir)/config.h.in:  $(am__configure_deps) $(top_srcdir)/acconfig.h
+$(srcdir)/config.h.in:  $(am__configure_deps)
 	($(am__cd) $(top_srcdir) && $(AUTOHEADER))
 	rm -f stamp-h1
 	touch $@
 
 distclean-hdr:
 	-rm -f config.h stamp-h1
-pdnsd.spec: $(top_builddir)/config.status $(srcdir)/pdnsd.spec.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
-file-list.base: $(top_builddir)/config.status $(srcdir)/file-list.base.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
-PKGBUILD: $(top_builddir)/config.status $(srcdir)/PKGBUILD.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
-
 # This directory's subdirectories are mostly independent; you can cd
 # into them and run `make' without going through this Makefile.
 # To change the values of `make' variables: instead of editing Makefiles,

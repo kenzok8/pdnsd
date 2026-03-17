@@ -522,27 +522,11 @@ AC_CHECK_FUNCS(poll, true, AC_DEFINE(NO_POLL))
 AC_CHECK_FUNCS(strdup strndup stpcpy stpncpy strlcpy mempcpy getline asprintf vasprintf getpwnam_r inet_ntop inet_pton)
 
 AC_OUTPUT([
-pdnsd.spec
 Makefile
-file-list.base
-contrib/Makefile
 doc/Makefile
 doc/pdnsd.8
 doc/pdnsd.conf.5
 doc/pdnsd.conf
 src/Makefile
 src/pdnsd-ctl/Makefile
-src/rc/Makefile
-src/rc/RedHat/Makefile
-src/rc/RedHat/pdnsd
-src/rc/SuSE/Makefile
-src/rc/SuSE/pdnsd
-src/rc/Debian/Makefile
-src/rc/Debian/pdnsd
-src/rc/Slackware/Makefile
-src/rc/Slackware/rc.pdnsd
-src/rc/ArchLinux/Makefile
-src/rc/ArchLinux/pdnsd
-src/test/Makefile
-PKGBUILD
 ])

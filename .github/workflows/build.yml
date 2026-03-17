@@ -13,9 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Install dependencies
-        run: sudo apt-get install -y build-essential autoconf automake
-      - name: autoreconf
-        run: autoreconf -fi
+        run: sudo apt-get install -y build-essential
+      - name: Normalize autotools timestamps
+        run: |
+          touch configure aclocal.m4 Makefile.in config.h.in
+          touch src/Makefile.in src/pdnsd-ctl/Makefile.in doc/Makefile.in
       - name: configure
         run: ./configure
       - name: build
