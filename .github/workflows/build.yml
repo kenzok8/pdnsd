@@ -6,19 +6,31 @@ on:
   pull_request:
     branches: [ main, master ]
 
+# pdnsd uses a pre-generated ./configure from the original 2012 autoconf release.
+# The custom aclocal.m4 macros reference internal autoconf APIs removed in 2.70+,
+# making autoreconf incompatible with modern systems.
+# CI skips autoreconf and uses the bundled configure directly to validate C
+# compilation on modern GCC/Clang.
+
 jobs:
   build:
-    name: Linux
+    name: Linux (${{ matrix.compiler }})
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
+        include:
+          - compiler: gcc
+            cc: gcc
+          - compiler: clang
+            cc: clang
     steps:
       - uses: actions/checkout@v6
-      - name: Install dependencies
-        run: sudo apt-get install -y build-essential
-      - name: Normalize autotools timestamps
-        run: |
-          touch configure aclocal.m4 Makefile.in config.h.in
-          touch src/Makefile.in src/pdnsd-ctl/Makefile.in doc/Makefile.in
+
       - name: configure
+        env:
+          CC: ${{ matrix.cc }}
         run: ./configure
+
       - name: build
         run: make -j$(nproc)
