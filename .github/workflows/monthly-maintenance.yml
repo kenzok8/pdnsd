@@ -1,0 +1,46 @@
+name: monthly-maintenance
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 4 1 * *'
+
+jobs:
+  build-and-audit:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler: [gcc, clang]
+        include:
+          - compiler: gcc
+            cc: gcc
+          - compiler: clang
+            cc: clang
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y build-essential autoconf automake
+
+      - name: Configure
+        env:
+          CC: ${{ matrix.cc }}
+        run: ./configure
+
+      - name: Touch generated files
+        run: |
+          touch aclocal.m4 configure config.h.in
+          find . -name 'Makefile.in' | xargs touch
+
+      - name: Build
+        run: make -j"$(nproc)"
+
+      - name: Audit repository structure
+        run: |
+          set -euo pipefail
+          ! find . -type d \( -name .idea -o -name .vs \) | grep .
+          ! find . -type f \( -name '*.o' -o -name '*.obj' -o -name '*.exe' \) | grep .
+          test -f configure
+          test -f aclocal.m4
