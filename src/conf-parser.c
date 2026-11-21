@@ -684,6 +684,7 @@ int confparse(FILE* in, char *prestr, globparm_t *global, servparm_array *server
 	  case IGNORE_CD: {
 	    int ignore_cd;
 	    ASSIGN_ON_OFF(ignore_cd, p,C_ON,"bad qualifier in ignore_cd= option.");
+	    (void)ignore_cd; /* obsolete option: parsed for syntax validation only */
 	    fprintf(stderr, "Warning: ignore_cd option in configuration file is obsolete and currently has no effect.\n");
 	  }
 	    break;

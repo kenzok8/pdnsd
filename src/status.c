@@ -172,7 +172,7 @@ static int read_domain(int fh, char *buf, unsigned int buflen)
 static void *status_thread (void *p)
 {
 	THREAD_SIGINIT;
-	/* (void)p; */  /* To inhibit "unused variable" warning */
+	(void)p;  /* To inhibit "unused variable" warning */
 
 	if (!global.strict_suid) {
 		if (!run_as(global.run_as)) {
@@ -391,10 +391,6 @@ static void *status_thread (void *p)
 						print_serr(rs,errmsg);
 						goto free_fn;
 					}
-					if (ttl < 0) {
-						print_serr(rs, "Bad TTL.");
-						goto free_fn;
-					}
 					if(flags&DF_NEGATIVE) {
 						print_serr(rs, "Bad cache flags.");
 						goto free_fn;
@@ -431,8 +427,6 @@ static void *status_thread (void *p)
 						goto incomplete_command;
 					if ((errmsg=parsestr2rhn(buf,sizeof(buf),name))!=NULL)
 						goto bad_domain_name;
-					if (ttl < 0)
-						goto bad_ttl;
 					if(flags&DF_NEGATIVE)
 						goto bad_flags;
 
@@ -546,8 +540,6 @@ static void *status_thread (void *p)
 						print_serr(rs,"Bad record type.");
 						break;
 					}
-					if (ttl < 0)
-						goto bad_ttl;
 					{
 						dns_cent_t cent;
 
@@ -718,9 +710,6 @@ static void *status_thread (void *p)
 					break;
 				bad_domain_name:
 					print_serr(rs,errmsg);
-					break;
-				bad_ttl:
-					print_serr(rs, "Bad TTL.");
 					break;
 				bad_flags:
 					print_serr(rs, "Bad cache flags.");

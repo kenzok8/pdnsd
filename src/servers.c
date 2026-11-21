@@ -316,7 +316,7 @@ void *servstat_thread(void *p)
 	struct sigaction action;
 	int keep_testing;
 
-	/* (void)p; */  /* To inhibit "unused variable" warning */
+	(void)p;  /* To inhibit "unused variable" warning */
 
 	THREAD_SIGINIT;
 
@@ -852,5 +852,6 @@ int change_servers(int i, addr_array ar, int up)
 */
 static void sigint_handler(int signum)
 {
+	(void)signum;  /* To inhibit "unused variable" warning */
 	signal_interrupt=1;
 }

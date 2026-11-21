@@ -1758,6 +1758,7 @@ void write_disk_cache()
  */
 static int cr_check_add(dns_cent_t *cent, int idx, time_t ttl, time_t ts, unsigned flags)
 {
+	(void)ts;  /* To inhibit "unused variable" warning */
 	time_t nttl;
 	const struct rr_infos *rri;
 

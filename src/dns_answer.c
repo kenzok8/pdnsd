@@ -1622,6 +1622,7 @@ int init_udp_socket()
  */
 void *udp_server_thread(void *dummy)
 {
+	(void)dummy;  /* To inhibit "unused variable" warning */
 	int sock;
 	ssize_t qlen;
 	pthread_t pt;
@@ -2036,7 +2037,7 @@ void *tcp_server_thread(void *p)
 	pthread_t pt;
 	int *csock;
 
-	/* (void)p; */  /* To inhibit "unused variable" warning */
+	(void)p;  /* To inhibit "unused variable" warning */
 
 	THREAD_SIGINIT;
 

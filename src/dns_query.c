@@ -918,8 +918,7 @@ static int p_query_sm(query_stat_t *st)
 			}
 		}
 		st->state=QS_TCPWRITE;
-		/* st->event=QEV_WRITE; */
-		/* fall through in case of not EINPROGRESS */
+		/* fall through */
 	case QS_TCPWRITE:
 		{
 			int rem= dnsmsghdroffset + st->transl - st->iolen;
@@ -1192,8 +1191,9 @@ static int p_exec_query(dns_cent_t **entp, const unsigned char *name, int thint,
 #endif
 		st->recvbuf=NULL;
 		st->state=(USE_UDP(st)?QS_UDPINITIAL:QS_TCPINITIAL);
-		/* fall through */
+		__attribute__((fallthrough)); /* next case is the QS_QUERY_CASES macro; a comment alone is not recognized here */
 	}
+	/* fall through */
 	QS_QUERY_CASES:
 	tryagain:
 		rv=p_query_sm(st);
@@ -1403,6 +1403,7 @@ static int p_exec_query(dns_cent_t **entp, const unsigned char *name, int thint,
 			unsigned short qt,qc;
 			GETINT16(qt,rrp);
 			GETINT16(qc,rrp);
+			(void)qc; /* qclass is parsed to advance rrp, but not validated */
 			if(qt!=qtype) {
 				DEBUG_PDNSDA_MSG("qtype in answer (%u) from %s does not match expected qtype (%u).\n",
 						 qt,PDNSDA2STR(PDNSD_A(st)),qtype);
